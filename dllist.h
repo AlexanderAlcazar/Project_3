@@ -150,9 +150,7 @@ void DLList<Item>::print() const {
 template<typename Item>
 bool DLList<Item>::empty() const {
 
-	/*   TODO   */
-	bool retval = false;
-	return retval;
+	return (head == nullptr) && (tail == nullptr) && (count == 0);
 }
 
 
