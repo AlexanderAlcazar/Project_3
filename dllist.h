@@ -234,9 +234,7 @@ Item DLList<Item>::peek(int idx) const {
 template<typename Item>
 int DLList<Item>::size() const {
 
-	/*   TODO   */
-	int retval = 8675309;
-	return retval;
+	return count;
 }
 template<typename Item>
 int DLList<Item>::items(const Item &itm) const {
