@@ -174,12 +174,12 @@ bool DLList<Item>::empty() const {
 */
 template<typename Item>
 void DLList<Item>::add_front(const Item &itm) {
-    Node* newNode = new Node;
+    Node *newNode = new Node;
     newNode->itm(itm);
     if (empty()) {
         head = newNode;
         tail = newNode;
-    }else {
+    } else {
         newNode->nxt(head);
         head->prv(newNode);
         head = newNode;
@@ -191,14 +191,38 @@ void DLList<Item>::add_front(const Item &itm) {
 */
 template<typename Item>
 void DLList<Item>::add_rear(const Item &itm) {
-    /*   TODO   */
+    if (empty())
+        add_front(itm);
+    else {
+        Node *newNode = new Node;
+        newNode->itm(itm);
+        newNode->prv(tail);
+        tail->nxt(newNode);
+        tail = newNode;
+        count++;
+    }
 }
 
 /* DLList add
 */
 template<typename Item>
 void DLList<Item>::add(int idx, const Item &itm) {
-    /*   TODO   */
+    if (idx <= 0) {
+        add_front(itm);
+    } else if (idx >= count) {
+        add_rear(itm);
+    } else {
+        int index = 0;
+        Node *current = head;
+        while (index != idx) {
+            current = current->nxt();
+            index++;
+        }
+        Node *newNode = new Node(itm, current, current->prv());
+        current->prv()->nxt(newNode);
+        current->prv(newNode);
+        count++;
+    }
 }
 
 /*  DLList front
@@ -211,9 +235,7 @@ Item DLList<Item>::front() const {
     // we'll make due with assert, which is used for testing
     assert(head != nullptr);
 
-    /*   TODO   */
-    Item retval{};
-    return retval;
+    return head->itm();
 }
 
 /* DLList rear
@@ -226,9 +248,7 @@ Item DLList<Item>::rear() const {
     // we'll make due with assert, which is used for testing
     assert(tail != nullptr);
 
-    /*   TODO   */
-    Item retval{};
-    return retval;
+    return tail->itm();
 }
 
 /* DLList peek
@@ -240,10 +260,13 @@ Item DLList<Item>::peek(int idx) const {
     // exceptions, since we haven't covered that yet
     // we'll make due with assert, which is used for testing
     assert(idx >= 0 && idx < count);
-
-    /*   TODO   */
-    Item retval{};
-    return retval;
+    int index = 0;
+    Node* current = head;
+    while (index != idx) {
+        current = current->nxt();
+        index++;
+    }
+    return current->itm();
 }
 
 /* DLList size
