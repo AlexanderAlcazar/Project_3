@@ -214,11 +214,11 @@ void DLList<Item>::add(int idx, const Item &itm) {
     } else {
         int index = 0;
         Node *current = head;
-        while (index != idx) {
+        while (index < idx) {
             current = current->nxt();
             index++;
         }
-        Node *newNode = new Node(itm, current, current->prv());
+        Node *newNode = new Node(itm, current->prv(), current);
         current->prv()->nxt(newNode);
         current->prv(newNode);
         count++;

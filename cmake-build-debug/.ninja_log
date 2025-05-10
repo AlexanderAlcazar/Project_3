@@ -1,9 +1,9 @@
 # ninja log v6
-13	1007	7683267174628313	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
-1013	1559	7683267184624944	Project_3.exe	a631dae9b00756de
-279	1220	7684126370680782	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
-1221	1507	7684126380142783	Project_3.exe	a631dae9b00756de
-111	1103	7684241505502160	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
-1104	1404	7684241515419529	Project_3.exe	a631dae9b00756de
-224	1165	7684445717189315	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
-1167	1789	7684445726607168	Project_3.exe	a631dae9b00756de
+25	1638	7685537537618282	CMakeFiles/Project_3.dir/p3UnitTest.cpp.obj	a7349b8f8e482ba0
+314	1239	7685017586835564	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
+1639	1881	7685537553750457	Project_3.exe	a8fe176c9df03ca9
+4	411	7685537876284710	build.ninja	20a2edd74c296f80
+57	648	7685527400798245	CMakeFiles/Project_3.dir/memorymanager.cpp.obj	90f8972fb49ccd5d
+22	581	7685537876284710	build.ninja	20a2edd74c296f80
+67	709	7685537878321461	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
+709	894	7685537884736347	Project_3.exe	bb16186320a98daa
