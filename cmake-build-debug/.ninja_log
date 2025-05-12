@@ -1,9 +1,6 @@
 # ninja log v6
 25	1638	7685537537618282	CMakeFiles/Project_3.dir/p3UnitTest.cpp.obj	a7349b8f8e482ba0
-314	1239	7685017586835564	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
-1639	1881	7685537553750457	Project_3.exe	a8fe176c9df03ca9
-4	411	7685537876284710	build.ninja	20a2edd74c296f80
-57	648	7685527400798245	CMakeFiles/Project_3.dir/memorymanager.cpp.obj	90f8972fb49ccd5d
-22	581	7685537876284710	build.ninja	20a2edd74c296f80
 67	709	7685537878321461	CMakeFiles/Project_3.dir/main.cpp.obj	f859cb6fccfcf485
 709	894	7685537884736347	Project_3.exe	bb16186320a98daa
+22	581	7686360144484885	build.ninja	20a2edd74c296f80
+57	648	7685527400798245	CMakeFiles/Project_3.dir/memorymanager.cpp.obj	90f8972fb49ccd5d

@@ -278,36 +278,77 @@ int DLList<Item>::size() const {
 
 template<typename Item>
 int DLList<Item>::items(const Item &itm) const {
-    /*   TODO   */
-    int retval = 8675309;
-    return retval;
+    int count = 0;
+    Node* current = head;
+    while (current != nullptr) {
+        if (current->itm() == itm)
+            count++;
+        current = current->nxt();
+    }
+    return count;
 }
 
 /* DLList search
 */
 template<typename Item>
 int DLList<Item>::search(const Item &itm) const {
-    /*   TODO   */
-    int retval = 8675309;
-    return retval;
+
+    int index = 0;
+    bool found = false;
+    Node* current = head;
+    while (current != nullptr) {
+        if (current->itm() == itm) {
+            found = true;
+            break;
+        }
+        current = current->nxt();
+        index++;
+    }
+    if (!found)
+        return -42;
+
+    return index;
 }
 
 /* DLList remove_front
 */
 template<typename Item>
 bool DLList<Item>::remove_front() {
-    /*   TODO   */
-    bool retval = false;
-    return retval;
+    if (empty())
+        return false;
+
+    if (size() == 1) {
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+    }else{
+        Node* garbage = head;
+        head = head -> nxt();
+        head -> prv(nullptr);
+        delete garbage;
+    }
+    count--;
+    return true;
 }
 
 /* DLList remove_rear
 */
 template<typename Item>
 bool DLList<Item>::remove_rear() {
-    /*   TODO   */
-    bool retval = false;
-    return retval;
+    if (empty())
+        return false;
+    if (size() == 1) {
+        delete tail;
+        head = nullptr;
+        tail = nullptr;
+    }else{
+        Node* garbage = tail;
+        tail = tail -> prv();
+        tail -> nxt(nullptr);
+        delete garbage;
+    }
+    count--;
+    return true;
 }
 
 /* DLList remove_index
