@@ -355,19 +355,36 @@ bool DLList<Item>::remove_rear() {
 */
 template<typename Item>
 bool DLList<Item>::remove_index(int idx) {
-    /*   TODO   */
+    if (idx < 0 || idx >= size() || empty())
+        return false;
+    if (idx == 0)
+        return remove_front();
+    else if (idx == size() - 1)
+        return remove_rear();
+    else {
+        int index = 1;
+        Node* current = head->nxt();
+        while (index < idx) {
+            current = current->nxt();
+            index++;
+        }
+        current -> prv()->nxt(current->nxt());
+        current -> nxt()->prv(current->prv());
+        delete current;
+    }
 
-    bool retval = false;
-    return retval;
+    count--;
+    return true;
 }
 
 /* DLList remove_item
 */
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
-    /*   TODO   */
-    int retval = 9000;
-    return retval;
+    int index = search(itm);
+    if (index >= 0)
+        remove_index(index);
+    return index;
 }
 
 /* DLList sub_list

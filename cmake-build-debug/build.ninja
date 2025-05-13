@@ -49,8 +49,8 @@ cmake_ninja_workdir = C$:/Users/alcaz/CLionProjects/Project$ 3/cmake-build-debug
 
 build cmake_object_order_depends_target_Project_3: phony || .
 
-build CMakeFiles/Project_3.dir/main.cpp.obj: CXX_COMPILER__Project_3_unscanned_Debug C$:/Users/alcaz/CLionProjects/Project$ 3/main.cpp || cmake_object_order_depends_target_Project_3
-  DEP_FILE = CMakeFiles\Project_3.dir\main.cpp.obj.d
+build CMakeFiles/Project_3.dir/p3UnitTest.cpp.obj: CXX_COMPILER__Project_3_unscanned_Debug C$:/Users/alcaz/CLionProjects/Project$ 3/p3UnitTest.cpp || cmake_object_order_depends_target_Project_3
+  DEP_FILE = CMakeFiles\Project_3.dir\p3UnitTest.cpp.obj.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Project_3.dir
   OBJECT_FILE_DIR = CMakeFiles\Project_3.dir
@@ -69,7 +69,7 @@ build CMakeFiles/Project_3.dir/memorymanager.cpp.obj: CXX_COMPILER__Project_3_un
 #############################################
 # Link the executable Project_3.exe
 
-build Project_3.exe: CXX_EXECUTABLE_LINKER__Project_3_Debug CMakeFiles/Project_3.dir/main.cpp.obj CMakeFiles/Project_3.dir/memorymanager.cpp.obj
+build Project_3.exe: CXX_EXECUTABLE_LINKER__Project_3_Debug CMakeFiles/Project_3.dir/p3UnitTest.cpp.obj CMakeFiles/Project_3.dir/memorymanager.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Project_3.dir

@@ -12,5 +12,22 @@ int main() {
         runTest(test_add_rear,i);
     for (int i = 0; i <= 6; i++)
         runTest(test_add,i);
+    for (int i = 0; i <= 4; i++)
+        runTest(test_search,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_front,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_rear,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_rear,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_peek,i);
+    for (int i = 0; i <= 2; i++)
+        runTest(test_remove_front,i);
+    for (int i = 0; i <= 2; i++)
+        runTest(test_remove_rear,i);
+    for (int i = 0; i <= 7; i++)
+        runTest(test_remove_index,i);
+
     return 0;
 }
