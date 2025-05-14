@@ -124,7 +124,18 @@ DLList<Item>::DLList() : head(nullptr), tail(nullptr), count(0) {
 */
 template<typename Item>
 DLList<Item>::DLList(const DLList<Item> &other) {
-    /*   TODO   */
+    if (other.empty()) {
+        head = nullptr;
+        tail = nullptr;
+        count = 0;
+        return;
+    }
+
+    Node* other_current = other.head;
+    while (other_current != nullptr) {
+        add_rear(other_current->itm());
+        other_current =  other_current->nxt();
+    }
 }
 
 /* Overloaded assignment operator
