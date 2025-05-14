@@ -28,6 +28,11 @@ int main() {
         runTest(test_remove_rear,i);
     for (int i = 0; i <= 7; i++)
         runTest(test_remove_index,i);
-
+    for (int i = 0; i <= 5; i++)
+        runTest(test_remove_item,i);
+    for (int i = 0; i <= 12; i++)
+        runTest(test_sub_list,i);
+    for (int i = 0; i <= 5; i++)
+        runTest(test_items,i);
     return 0;
 }

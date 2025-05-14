@@ -261,7 +261,7 @@ Item DLList<Item>::peek(int idx) const {
     // we'll make due with assert, which is used for testing
     assert(idx >= 0 && idx < count);
     int index = 0;
-    Node* current = head;
+    Node *current = head;
     while (index != idx) {
         current = current->nxt();
         index++;
@@ -279,7 +279,7 @@ int DLList<Item>::size() const {
 template<typename Item>
 int DLList<Item>::items(const Item &itm) const {
     int count = 0;
-    Node* current = head;
+    Node *current = head;
     while (current != nullptr) {
         if (current->itm() == itm)
             count++;
@@ -292,10 +292,9 @@ int DLList<Item>::items(const Item &itm) const {
 */
 template<typename Item>
 int DLList<Item>::search(const Item &itm) const {
-
     int index = 0;
     bool found = false;
-    Node* current = head;
+    Node *current = head;
     while (current != nullptr) {
         if (current->itm() == itm) {
             found = true;
@@ -321,10 +320,10 @@ bool DLList<Item>::remove_front() {
         delete head;
         head = nullptr;
         tail = nullptr;
-    }else{
-        Node* garbage = head;
-        head = head -> nxt();
-        head -> prv(nullptr);
+    } else {
+        Node *garbage = head;
+        head = head->nxt();
+        head->prv(nullptr);
         delete garbage;
     }
     count--;
@@ -341,10 +340,10 @@ bool DLList<Item>::remove_rear() {
         delete tail;
         head = nullptr;
         tail = nullptr;
-    }else{
-        Node* garbage = tail;
-        tail = tail -> prv();
-        tail -> nxt(nullptr);
+    } else {
+        Node *garbage = tail;
+        tail = tail->prv();
+        tail->nxt(nullptr);
         delete garbage;
     }
     count--;
@@ -363,13 +362,13 @@ bool DLList<Item>::remove_index(int idx) {
         return remove_rear();
     else {
         int index = 1;
-        Node* current = head->nxt();
+        Node *current = head->nxt();
         while (index < idx) {
             current = current->nxt();
             index++;
         }
-        current -> prv()->nxt(current->nxt());
-        current -> nxt()->prv(current->prv());
+        current->prv()->nxt(current->nxt());
+        current->nxt()->prv(current->prv());
         delete current;
     }
 
@@ -381,6 +380,9 @@ bool DLList<Item>::remove_index(int idx) {
 */
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
+    if (empty())
+        return -1;
+
     int index = search(itm);
     if (index >= 0)
         remove_index(index);
@@ -391,9 +393,30 @@ int DLList<Item>::remove_item(const Item &itm) {
 */
 template<typename Item>
 bool DLList<Item>::sub_list(const DLList<Item> &sub) {
-    /*   TODO   */
-    bool retval = true;
-    return retval;
+    //an empty list is a sub list of any list
+    if (sub.empty())
+        return true;
+    if (empty() || sub.size() > size())
+        return false;
+
+    Node *current_node = head;
+    Node *sub_current = sub.head;
+    int count = 0;
+    while (current_node != nullptr) {
+        if (sub_current->itm() == current_node->itm()) {
+            sub_current = sub_current->nxt();
+            count++;
+            if (count == sub.size())
+                return true;
+        } else {
+            sub_current = sub.head;
+            count = 0;
+            if (sub_current->itm() == current_node->itm())
+                continue;
+        }
+        current_node = current_node->nxt();
+    }
+    return false;
 }
 
 #endif
