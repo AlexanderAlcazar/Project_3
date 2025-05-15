@@ -34,5 +34,14 @@ int main() {
         runTest(test_sub_list,i);
     for (int i = 0; i <= 5; i++)
         runTest(test_items,i);
+    for (int i = 0; i <= 0; i++)
+        runTest(test_mem_destructor,i);
+    for (int i = 0; i <= 2; i++)
+        runTest(test_copyCtor,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_size,i);
+    for (int i = 0; i <= 1; i++)
+        runTest(test_print,i);
+
     return 0;
 }

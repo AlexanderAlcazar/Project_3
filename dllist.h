@@ -170,7 +170,13 @@ DLList<Item>::~DLList() {
 
 template<typename Item>
 void DLList<Item>::print() const {
-    /*   TODO   */
+    Node* current = head;
+    while (current !=  nullptr) {
+        std::cout << current -> itm();
+        if (current != tail)
+            std::cout << " ";
+        current = current->nxt();
+    }
 }
 
 /* DLList empty
