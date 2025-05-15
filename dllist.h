@@ -142,7 +142,24 @@ DLList<Item>::DLList(const DLList<Item> &other) {
 */
 template<typename Item>
 DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
-    /*   TODO   */
+    if (this == &other)
+        return *this;
+
+
+    Node* current = head;
+    if (!empty()) {
+        while (current != nullptr) {
+            remove_front();
+            current = current->nxt();
+        }
+
+    }
+
+    Node* other_current = other.head;
+    while (other_current != nullptr) {
+        add_rear(other_current->itm());
+        other_current = other_current->nxt();
+    }
     return *this;
 }
 

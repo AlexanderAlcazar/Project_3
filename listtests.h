@@ -1948,6 +1948,7 @@ int test_mem_assgnOper(int testNum) {
 		DLList<int> * l = new DLList<int>;
 		DLList<int> * p = new DLList<int>;
 
+
 		RESET(); 
 
 		DLList<int>::Node* head = DEBUG_NEW DLList<int>::Node;
@@ -1972,7 +1973,7 @@ int test_mem_assgnOper(int testNum) {
 		l->head = head;
 		l->tail = third;
 		l->count = 3;
-				
+
 		*l = *p;
 
 		//GETMEMORYREPORT();
