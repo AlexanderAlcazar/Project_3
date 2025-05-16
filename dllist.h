@@ -117,6 +117,7 @@ private:
 */
 template<typename Item>
 DLList<Item>::DLList() : head(nullptr), tail(nullptr), count(0) {
+    //default constructor
 }
 
 
@@ -124,9 +125,14 @@ DLList<Item>::DLList() : head(nullptr), tail(nullptr), count(0) {
 */
 template<typename Item>
 DLList<Item>::DLList(const DLList<Item> &other): head(nullptr), tail(nullptr), count(0) {
+    //if the other list is empty, do nothing
     if (other.empty())
         return;
+    //temporary node to iterate through the other list
     Node* other_current = other.head;
+    //iterate through the other list
+    //add each item to the rear of this list
+    //to preserve order
     while (other_current != nullptr) {
         add_rear(other_current->itm());
         other_current =  other_current->nxt();
@@ -137,14 +143,17 @@ DLList<Item>::DLList(const DLList<Item> &other): head(nullptr), tail(nullptr), c
 */
 template<typename Item>
 DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
+    //check for self assignment
     if (this == &other)
         return *this;
-
-    while(!empty()) {
+    //delete the nodes current list
+    while(!empty())
        remove_front();
-    }
-
+    //temporary node to iterate through the other list
     Node* other_current = other.head;
+    //iterate through the other list
+    //add each item to the rear of this list
+    //to preserve order
     while (other_current != nullptr) {
         add_rear(other_current->itm());
         other_current = other_current->nxt();
@@ -157,9 +166,10 @@ DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
 */
 template<typename Item>
 DLList<Item>::~DLList() {
-    while(!empty()) {
+    //delete all nodes in the list
+    while(!empty())
         remove_front();
-    }
+
     //set to empty state
     head = nullptr;
     tail = nullptr;
@@ -172,7 +182,11 @@ DLList<Item>::~DLList() {
 
 template<typename Item>
 void DLList<Item>::print() const {
+    //temporary node to iterate through the list
     Node* current = head;
+    //iterate through the list
+    //print each item
+    //if current is not the tail, print a space
     while (current !=  nullptr) {
         std::cout << current -> itm();
         if (current != tail)
@@ -185,6 +199,8 @@ void DLList<Item>::print() const {
 */
 template<typename Item>
 bool DLList<Item>::empty() const {
+    //check if the list is empty
+    //head and tail should be null and count should be 0
     return (head == nullptr) && (tail == nullptr) && (count == 0);
 }
 
@@ -193,8 +209,11 @@ bool DLList<Item>::empty() const {
 */
 template<typename Item>
 void DLList<Item>::add_front(const Item &itm) {
+    // create and initialize a new node
     Node *newNode = new Node;
     newNode->itm(itm);
+    //check if the list is empty
+    //else link the new node to the head
     if (empty()) {
         head = newNode;
         tail = newNode;
@@ -203,6 +222,7 @@ void DLList<Item>::add_front(const Item &itm) {
         head->prv(newNode);
         head = newNode;
     }
+    //increment the count
     count++;
 }
 
@@ -210,6 +230,9 @@ void DLList<Item>::add_front(const Item &itm) {
 */
 template<typename Item>
 void DLList<Item>::add_rear(const Item &itm) {
+    //if the list is empty
+    //call add_front for the first item
+    //else link the new node to the tail
     if (empty())
         add_front(itm);
     else {
@@ -226,6 +249,10 @@ void DLList<Item>::add_rear(const Item &itm) {
 */
 template<typename Item>
 void DLList<Item>::add(int idx, const Item &itm) {
+    //three cases:
+    //idx < 0 - add to front
+    //index > count - add to rear
+    //index in between - traverse to the index and add
     if (idx <= 0) {
         add_front(itm);
     } else if (idx >= count) {
@@ -233,10 +260,12 @@ void DLList<Item>::add(int idx, const Item &itm) {
     } else {
         int index = 0;
         Node *current = head;
+        //find the index
         while (index < idx) {
             current = current->nxt();
             index++;
         }
+        //create a new node and link it to the current node
         Node *newNode = new Node(itm, current->prv(), current);
         current->prv()->nxt(newNode);
         current->prv(newNode);
@@ -254,6 +283,7 @@ Item DLList<Item>::front() const {
     // we'll make due with assert, which is used for testing
     assert(head != nullptr);
 
+    //return item in the head node
     return head->itm();
 }
 
@@ -267,6 +297,7 @@ Item DLList<Item>::rear() const {
     // we'll make due with assert, which is used for testing
     assert(tail != nullptr);
 
+    //return item in the tail node
     return tail->itm();
 }
 
@@ -281,10 +312,12 @@ Item DLList<Item>::peek(int idx) const {
     assert(idx >= 0 && idx < count);
     int index = 0;
     Node *current = head;
-    while (index != idx) {
+    //traverse to the index
+    while (index < idx) {
         current = current->nxt();
         index++;
     }
+    //return the item in the node
     return current->itm();
 }
 
@@ -292,6 +325,7 @@ Item DLList<Item>::peek(int idx) const {
 */
 template<typename Item>
 int DLList<Item>::size() const {
+    //return the count(number of nodes) in the list
     return count;
 }
 
@@ -299,11 +333,15 @@ template<typename Item>
 int DLList<Item>::items(const Item &itm) const {
     int count = 0;
     Node *current = head;
+    //traverse through the list
     while (current != nullptr) {
+        //check if the item in the node is equal to the item passed
+        //if so, increment the count
         if (current->itm() == itm)
             count++;
         current = current->nxt();
     }
+    //return the count(number of times the item is in the list)
     return count;
 }
 
@@ -312,19 +350,25 @@ int DLList<Item>::items(const Item &itm) const {
 template<typename Item>
 int DLList<Item>::search(const Item &itm) const {
     int index = 0;
+    //flag to check if the item is found
     bool found = false;
     Node *current = head;
+    //traverse through the list
     while (current != nullptr) {
+        //if the item in the node is equal to the item passed
+        //set the flag to true and break
         if (current->itm() == itm) {
             found = true;
             break;
         }
+        //continue traversing
         current = current->nxt();
         index++;
     }
+    //if the item is not found, return -42
     if (!found)
         return -42;
-
+    //return the index of the item
     return index;
 }
 
