@@ -123,14 +123,9 @@ DLList<Item>::DLList() : head(nullptr), tail(nullptr), count(0) {
 /* Copy constructor
 */
 template<typename Item>
-DLList<Item>::DLList(const DLList<Item> &other) {
-    if (other.empty()) {
-        head = nullptr;
-        tail = nullptr;
-        count = 0;
+DLList<Item>::DLList(const DLList<Item> &other): head(nullptr), tail(nullptr), count(0) {
+    if (other.empty())
         return;
-    }
-
     Node* other_current = other.head;
     while (other_current != nullptr) {
         add_rear(other_current->itm());
@@ -145,14 +140,8 @@ DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
     if (this == &other)
         return *this;
 
-
-    Node* current = head;
-    if (!empty()) {
-        while (current != nullptr) {
-            remove_front();
-            current = current->nxt();
-        }
-
+    while(!empty()) {
+       remove_front();
     }
 
     Node* other_current = other.head;
@@ -168,18 +157,14 @@ DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
 */
 template<typename Item>
 DLList<Item>::~DLList() {
-    if (!empty()) {
-        Node *current = head;
-        while (current != nullptr) {
-            Node *garbage = current;
-            current = current->nxt();
-            delete garbage;
-        }
-        //set to empty state
-        head = nullptr;
-        tail = nullptr;
-        count = 0;
+    while(!empty()) {
+        remove_front();
     }
+    //set to empty state
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
+
 }
 
 /* DLList print

@@ -3,4 +3,4 @@ project(Project_3)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Project_3 p3UnitTest.cpp memorymanager.cpp)
+add_executable(Project_3 main.cpp memorymanager.cpp)
