@@ -1163,7 +1163,7 @@ int test_remove_item(int testNum) {
 	switch (testNum) {
 	case 0: {//Test with empty list
 		DLList<int> * l = new DLList<int>;
-		assert(l->remove_item(1) == -1);
+		assert(l->remove_item(1) == -42);
 		break;
 	}
 	case 1: {

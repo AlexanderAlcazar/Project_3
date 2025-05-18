@@ -376,9 +376,12 @@ int DLList<Item>::search(const Item &itm) const {
 */
 template<typename Item>
 bool DLList<Item>::remove_front() {
+    //check if the list is empty
     if (empty())
         return false;
-
+    //if the list has only one node
+    //delete the head and set head and tail to null
+    //delete the node and move the head to the next node
     if (size() == 1) {
         delete head;
         head = nullptr;
@@ -389,6 +392,7 @@ bool DLList<Item>::remove_front() {
         head->prv(nullptr);
         delete garbage;
     }
+    //decrement the count
     count--;
     return true;
 }
@@ -397,19 +401,23 @@ bool DLList<Item>::remove_front() {
 */
 template<typename Item>
 bool DLList<Item>::remove_rear() {
+    //check if the list is empty
     if (empty())
         return false;
+    //if the list has only one node
+    //call remove_front
+    //else delete the tail and set tail to the previous node
     if (size() == 1) {
-        delete tail;
-        head = nullptr;
-        tail = nullptr;
+        return remove_front();
     } else {
         Node *garbage = tail;
         tail = tail->prv();
         tail->nxt(nullptr);
         delete garbage;
     }
+    //decrement the count
     count--;
+
     return true;
 }
 
@@ -417,8 +425,13 @@ bool DLList<Item>::remove_rear() {
 */
 template<typename Item>
 bool DLList<Item>::remove_index(int idx) {
+    //if the index is out of bounds
+    //or the list is empty, return false
     if (idx < 0 || idx >= size() || empty())
         return false;
+    //if the index is 0, call remove_front
+    //if the index is the last index, call remove_rear
+    //else traverse to the index and delete the node
     if (idx == 0)
         return remove_front();
     else if (idx == size() - 1)
@@ -430,11 +443,12 @@ bool DLList<Item>::remove_index(int idx) {
             current = current->nxt();
             index++;
         }
+        //link the previous node to the next node
         current->prv()->nxt(current->nxt());
         current->nxt()->prv(current->prv());
         delete current;
     }
-
+    //decrement the count
     count--;
     return true;
 }
@@ -443,10 +457,10 @@ bool DLList<Item>::remove_index(int idx) {
 */
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
-    if (empty())
-        return -1;
-
+    //check if the item is in the list
+    //if not found, search returns -42
     int index = search(itm);
+    //if index >= 0, remove the item
     if (index >= 0)
         remove_index(index);
     return index;
@@ -459,21 +473,29 @@ bool DLList<Item>::sub_list(const DLList<Item> &sub) {
     //an empty list is a sub list of any list
     if (sub.empty())
         return true;
+    //check if the sub list is larger than the list
     if (empty() || sub.size() > size())
         return false;
 
     Node *current_node = head;
     Node *sub_current = sub.head;
     int count = 0;
+    //traverse through the list
     while (current_node != nullptr) {
+        //check if the item in the node is equal to the item in the sub list
+        //if move to the next node in the sub list and increment the count
+        //else reset the sub list to the head and set count to 0
         if (sub_current->itm() == current_node->itm()) {
             sub_current = sub_current->nxt();
             count++;
+            //check if the count is equal to the size of the sub list
             if (count == sub.size())
                 return true;
         } else {
             sub_current = sub.head;
             count = 0;
+            //after resetting the sub list, check if the item in the node is equal to the item in the sub list
+            //if so, don't move to the next node before accounting for the count
             if (sub_current->itm() == current_node->itm())
                 continue;
         }
